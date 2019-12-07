@@ -1,2 +1,4 @@
 # exclude files
 /node_modules
+
+yarn.lock
