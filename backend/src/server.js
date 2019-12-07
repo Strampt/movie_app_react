@@ -14,6 +14,6 @@ app.use(routes);
 app.listen(3333);
 
 /*
-27:57 2-criando a base
+51:00 2-criando a base
 yarn run dev 
 */
