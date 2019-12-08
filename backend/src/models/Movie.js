@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Float = require('mongoose-float').loadType(mongoose, 1);
 
 const MovieSchema = new mongoose.Schema({
-	imdb: String,
+	imdbid: String,
 	title: String,
 	year: Number,
 	type: String,
