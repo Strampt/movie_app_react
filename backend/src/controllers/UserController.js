@@ -7,13 +7,18 @@ module.exports = {
 		const { email, password } = req.body;
 		const saltRounds = 10;
 
-		bcrypt.hash(password, saltRounds, async function(err, hash) {
-			if (err) {
-				throw err;
-			} else {
-				const user = await User.create({ email, password: hash });
-				return res.json(user);
-			}
-		});
+		let user = await User.findOne({ email });
+
+		if (!user) {
+			bcrypt.hash(password, saltRounds, async function(err, hash) {
+				if (err) {
+					throw err;
+				} else {
+					user = await User.create({ email, password: hash });
+					//console.log(user);
+				}
+			});
+		}
+		return res.json(user);
 	}
 };
