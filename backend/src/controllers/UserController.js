@@ -13,7 +13,8 @@ module.exports = {
 			// https://www.twitch.tv/videos/518990850?t=2h2m37s
 			let hashedPassword = await bcrypt.hash(password, saltRounds);
 			user = await User.create({ email, password: hashedPassword });
+			return res.status(201).json(user);
 		}
-		return res.json(user);
+		return res.status(200).json({ user, message: 'User already exists' });
 	}
 };
