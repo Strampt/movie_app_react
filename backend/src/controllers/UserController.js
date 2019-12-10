@@ -10,14 +10,9 @@ module.exports = {
 		let user = await User.findOne({ email });
 
 		if (!user) {
-			bcrypt.hash(password, saltRounds, async function(err, hash) {
-				if (err) {
-					throw err;
-				} else {
-					user = await User.create({ email, password: hash });
-					//console.log(user);
-				}
-			});
+			// https://www.twitch.tv/videos/518990850?t=2h2m37s
+			let hashedPassword = await bcrypt.hash(password, saltRounds);
+			user = await User.create({ email, password: hashedPassword });
 		}
 		return res.json(user);
 	}
