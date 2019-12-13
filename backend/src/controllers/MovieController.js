@@ -18,6 +18,6 @@ module.exports = {
 			director
 		});
 
-		return res.json(movie);
+		return res.status(201).json(movie);
 	}
 };

@@ -12,9 +12,11 @@ module.exports = {
 		if (!user) {
 			// https://www.twitch.tv/videos/518990850?t=2h2m37s
 			let hashedPassword = await bcrypt.hash(password, saltRounds);
+			// await faz com que espere que se crie o user e só depois avança
 			user = await User.create({ email, password: hashedPassword });
+			// retorna o json do user e o http status
 			return res.status(201).json(user);
 		}
-		return res.status(200).json({ user, message: 'User already exists' });
+		return res.status(200).json({ message: 'User already exists', user });
 	}
 };
